@@ -1,26 +1,22 @@
+// App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FileProvider } from './provider/FileProvider';
+import FileList from './components/FileList';
+import { AppBar, Toolbar, Typography, Container } from '@mui/material';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <FileProvider>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6">File Browser</Typography>
+          </Toolbar>
+        </AppBar>
+        <Container sx={{ marginTop: 4 }}>
+          <FileList />
+        </Container>
+      </FileProvider>
   );
-}
+};
 
 export default App;
