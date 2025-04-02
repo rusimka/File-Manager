@@ -1,22 +1,30 @@
 
 import FileItemProps from "../interface/FileItemProps";
-// @ts-ignore
 import File from "../interface/File";
-import {Card, CardContent, Typography} from "@mui/material";
+import {Card, CardContent, Checkbox, Typography} from "@mui/material";
 import {FaFileAlt, FaFolder,} from "react-icons/fa";
+import {useFileContext} from "../contex/FileContext";
+import "../style/FileItem.css";
 
 
-const FolderIcon = FaFolder as React.FC<{ size?: number }>;
-const FileIcon = FaFileAlt as React.FC<{ size?: number }>;
 
-const FileItem: React.FC<FileItemProps> = ({ file }) => {
+const FolderIcon = FaFolder as React.FC<{ className?: string }>;
+const FileIcon = FaFileAlt as React.FC<{ className?: string }>;
+
+const FileItem: React.FC<{ file: File }> = ({ file }) => {
+    const { selectedFiles, toggleSelectFile, seeSelectedFile } = useFileContext();
+    const isSelected = selectedFiles.some(selectedFile => selectedFile.id === file.id);
+    console.log("File Item: " + isSelected)
+    console.log("file item: " + selectedFiles);
     return (
-        <Card sx={{ width: 150, height: 150, margin: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-            <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                {file.type === "folder" ? <FolderIcon size={24} /> : <FileIcon size={24} />}
-                <Typography variant="body2" sx={{ marginTop: 1, textAlign: 'center' }}>
-                    {file.name}
-                </Typography>
+        <Card
+            className={`file-item ${isSelected ? "selected" : ""}`}
+            onClick={() => toggleSelectFile(file)}
+        >
+            <Checkbox checked={isSelected} />
+            {file.type === "folder" ? <FolderIcon className="file-icon folder-icon" /> : <FileIcon className="file-icon file-icon" />}
+            <CardContent>
+                <Typography>{file.name}</Typography>
             </CardContent>
         </Card>
     );

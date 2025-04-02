@@ -1,0 +1,11 @@
+.file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+}
+
+.file-list-item {
+    flex: 1 1 calc(25% - 16px); /* Responsive grid layout */
+    min-width: 200px;
+}
