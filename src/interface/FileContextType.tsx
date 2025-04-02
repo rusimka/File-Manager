@@ -8,5 +8,8 @@ interface FileContextType {
     toggleSelectFile: (file: File) => void;
     selectAllFiles: () => void;
     seeSelectedFile: (file: File) => void;
+    filteredFiles: File[];
+    searchItem: string;
+    handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default FileContextType;

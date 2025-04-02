@@ -13,6 +13,8 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
     ]);
 
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    // const [filteredFiles, setFilteredFiles] = useState(files);
+    const [searchItem, setSearchItem] = useState("");
 
     const toggleSelectFile = (file: File) => {
         setSelectedFiles((prevSelected) =>
@@ -26,13 +28,23 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
         setSelectedFiles(selectedFiles.length === files.length ? [] : [...files]);
     };
 
-
     const seeSelectedFile = (file: File) => {
         console.log("The file that we selected: " +file);
     }
 
+    // Computed filtered files based on searchItem
+    const filteredFiles = searchItem.trim()
+        ? files.filter((file) =>
+            file.name.toLowerCase().includes(searchItem.toLowerCase())
+        )
+        : files; // If search is empty, show all files
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchItem(e.target.value);
+    };
+
     return (
-        <FileContext.Provider value={{files, setFiles, selectedFiles, toggleSelectFile, selectAllFiles, seeSelectedFile}}>
+        <FileContext.Provider value={{files, setFiles, selectedFiles, toggleSelectFile, selectAllFiles, seeSelectedFile, filteredFiles,searchItem,handleSearch}}>
             {children}
         </FileContext.Provider>
     );
