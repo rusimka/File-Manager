@@ -25,7 +25,7 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
     };
 
     const selectAllFiles = () => {
-        setSelectedFiles(selectedFiles.length === files.length ? [] : [...files]);
+        setSelectedFiles(selectedFiles.length === filteredFiles.length ? [] : [...filteredFiles]);
     };
 
     const seeSelectedFile = (file: File) => {
