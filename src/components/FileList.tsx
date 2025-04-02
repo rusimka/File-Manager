@@ -6,16 +6,22 @@ import { useFileContext } from '../contex/FileContext';
 import "../style/FileItem.css";
 
 const FileList: React.FC = () => {
-    const { files } = useFileContext();
+    const { files, filteredFiles } = useFileContext();
 
     return (
-        <div className="file-list">
-            {files.map((file) => (
-                <div key={file.id} className="file-list-item">
-                    <FileItem file={file} />
-                </div>
-            ))}
-        </div>
+        <>
+            <div className="file-list">
+                {filteredFiles.length > 0 ? (
+                    filteredFiles.map((file) => (
+                        <div key={file.id} className="file-list-item">
+                            <FileItem file={file} />
+                        </div>
+                    ))
+                ) : (
+                    <p>No files found</p> // Show message when no results match
+                )}
+            </div>
+        </>
     );
 };
 
