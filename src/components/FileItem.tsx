@@ -21,7 +21,7 @@ const FileItem: React.FC<{ file: File }> = ({ file }) => {
             className={`file-item ${isSelected ? "selected" : ""}`}
             onClick={() => toggleSelectFile(file)}
         >
-            <Checkbox checked={isSelected} onChange={() => seeSelectedFile(file)} />
+            <Checkbox checked={isSelected} />
             {file.type === "folder" ? <FolderIcon className="file-icon folder-icon" /> : <FileIcon className="file-icon file-icon" />}
             <CardContent>
                 <Typography>{file.name}</Typography>
