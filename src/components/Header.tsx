@@ -3,13 +3,10 @@ import {useFileContext} from "../contex/FileContext";
 import { TextField, Checkbox, FormControlLabel, Typography, Box } from "@mui/material";
 
 const Header: React.FC = () => {
-    const { files, selectedFiles, selectAllFiles } = useFileContext();
-    const [searchTerm, setSearchTerm] = useState("");
+    const { files, selectedFiles, selectAllFiles, searchItem,handleSearch,filteredFiles } = useFileContext();
 
     // Handle search
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
-    };
+
 
 
     return (
@@ -19,7 +16,7 @@ const Header: React.FC = () => {
                 label="Search Files"
                 variant="outlined"
                 size="small"
-                value={searchTerm}
+                value={searchItem}
                 onChange={handleSearch}
             />
 
@@ -27,7 +24,7 @@ const Header: React.FC = () => {
             <FormControlLabel
                 control={
                     <Checkbox
-                        checked={selectedFiles.length === files.length && files.length > 0}
+                        checked={selectedFiles.length === filteredFiles.length && filteredFiles.length > 0}
                         onChange={selectAllFiles}
                     />
                 }
