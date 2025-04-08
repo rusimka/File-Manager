@@ -11,5 +11,7 @@ interface FileContextType {
     filteredFiles: File[];
     searchItem: string;
     handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isGridView: boolean,
+    setIsGridView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default FileContextType;

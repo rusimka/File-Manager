@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {useFileContext} from "../contex/FileContext";
-import { TextField, Checkbox, FormControlLabel, Typography, Box } from "@mui/material";
+import {TextField, Checkbox, FormControlLabel, Typography, Box, Button, Grid} from "@mui/material";
+import ViewList from "@mui/icons-material";
+import {IconBase} from "react-icons";
 
 const Header: React.FC = () => {
-    const { files, selectedFiles, selectAllFiles, searchItem,handleSearch,filteredFiles } = useFileContext();
-
-    // Handle search
+    const { files, selectedFiles, selectAllFiles, searchItem,handleSearch,filteredFiles,isGridView,setIsGridView } = useFileContext();
 
 
 
@@ -35,6 +35,20 @@ const Header: React.FC = () => {
             <Typography variant="body1">
                 {selectedFiles.length} selected
             </Typography>
+
+            <Button
+                variant={isGridView ? "contained" : "outlined"}
+                onClick={() => setIsGridView(true)}
+            >
+                Grid
+            </Button>
+
+            <Button
+                variant={!isGridView ? "contained" : "outlined"}
+                onClick={() => setIsGridView(false)}
+            >
+                List
+            </Button>
         </Box>
     );
 };

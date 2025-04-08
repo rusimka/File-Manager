@@ -6,11 +6,11 @@ import { useFileContext } from '../contex/FileContext';
 import "../style/FileItem.css";
 
 const FileList: React.FC = () => {
-    const { files, filteredFiles } = useFileContext();
+    const { files, filteredFiles,isGridView } = useFileContext();
 
     return (
         <>
-            <div className="file-list">
+            <div className={`file-list-container ${isGridView ? "grid-view" : "list-view"}`}>
                 {filteredFiles.length > 0 ? (
                     filteredFiles.map((file) => (
                         <div key={file.id} className="file-list-item">

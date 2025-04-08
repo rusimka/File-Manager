@@ -15,6 +15,7 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     // const [filteredFiles, setFilteredFiles] = useState(files);
     const [searchItem, setSearchItem] = useState("");
+    const [isGridView, setIsGridView] = useState(true); // true = Grid, false = List
 
     const toggleSelectFile = (file: File) => {
         setSelectedFiles((prevSelected) =>
@@ -44,7 +45,7 @@ export const FileProvider: React.FC<FileProviderProps> = ({ children }) => {
     };
 
     return (
-        <FileContext.Provider value={{files, setFiles, selectedFiles, toggleSelectFile, selectAllFiles, seeSelectedFile, filteredFiles,searchItem,handleSearch}}>
+        <FileContext.Provider value={{files, setFiles, selectedFiles, toggleSelectFile, selectAllFiles, seeSelectedFile, filteredFiles,searchItem,handleSearch, isGridView, setIsGridView}}>
             {children}
         </FileContext.Provider>
     );
